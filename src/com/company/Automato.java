@@ -36,6 +36,18 @@ public class Automato {
         // criando as transições para reconhecer a
         // palavra begin
         criarTransicoesPalavra02();
+
+        // criando as transições para reconhecer a
+        // palavra end
+        criarTransicoesPalavra03();
+
+        // criando as transições para reconhecer a
+        // palavra if
+        criarTransicoesPalavra04();
+
+        // criando as transições para reconhecer a
+        // palavra elseif
+        criarTransicoesPalavra05();
     }
 
     public TokenLexema recuperarProximoTokenLexema() {
@@ -44,10 +56,15 @@ public class Automato {
         //Coloca o estado atual como inicial
         Estado estadoAtual = s0;
 
+        // O arquivo acabou
+        if(!iteradorArquivo.isPossuiProximoToken()){
+            return null;
+        }
+
         // Realiza a leitura de arquivo enquanto (nessa ordem!!!):
         // 01) enquando houver estado válido
-        // 02) não estiver em um estado marcado
-        // 03) não acabar o arquivo
+        // 02) năo estiver em um estado marcado
+        // 03) năo acabar o arquivo
         Character c = ' ';
         while (estadoAtual != null &&
                 !estadoAtual.isMarcado() &&
@@ -63,13 +80,14 @@ public class Automato {
                 // do estado inicial e
                 // diferente de estado marcado
                 lexema = lexema + c;
-
             }
         }
 
+
+
         // caso o estado atual seja nulo
         // significa que parou em uma palavra
-        // não reconhecida
+        // năo reconhecida
         if(estadoAtual == null) {
             tokenLexema = new TokenLexema(TipoToken.NAO_RECONHECIDA, lexema);
         }else {
@@ -77,20 +95,20 @@ public class Automato {
             // de nulo há 3 possibilidades:
             // 1: parou em um estado marcado
             // 2: parou no estado inicial
-            // 3: parou em um estado NÃO final
+            // 3: parou em um estado NĂO final
 
 
             if(estadoAtual.isMarcado()) {
                 // Caso 01
                 // Caso esteja em um estado marcado
-                // temos que recuperar qual o
+                // temos que recuperar qual é
                 // o token daquele lexema e pedir para o iterador
                 // voltar 1 casa
 
                 // Vamos pedir para a tabela de símbolos
                 // o tipo do token atual
                 TipoToken tipoToken = tabelaSimbolos.get(estadoAtual);
-                tokenLexema = new TokenLexema(tipoToken, lexema);
+                tokenLexema = new TokenLexema(tipoToken, lexema.trim());
 
             }else if(s0.equals(estadoAtual)){
                 // Caso 02
@@ -98,7 +116,7 @@ public class Automato {
                 tokenLexema = new TokenLexema(TipoToken.DESCARTAR, "");
             } else {
                 // Caso 03
-                // Caso NÃO seja um estado marcado nem inicial
+                // Caso NĂO seja um estado marcado nem inicial
                 tokenLexema = new TokenLexema(TipoToken.NAO_RECONHECIDA, lexema);
             }
         }
@@ -131,13 +149,57 @@ public class Automato {
         Estado s12 = criarEstadoTransicaoUnica(12,s11, 'i', false);
         Estado s13 = criarEstadoTransicaoUnica(13,s12, 'n', false);
 
-        Estado s8 = new Estado(true, 8);
-        s13.adicionarTransicao(' ', s8);
-        s13.adicionarTransicao('\t',s8);
-        s13.adicionarTransicao('\r',s8);
+        Estado s14 = new Estado(true, 14);
+        s13.adicionarTransicao(' ', s14);
+        s13.adicionarTransicao('\t',s14);
+        s13.adicionarTransicao('\r',s14);
 
         // adiciona o valor na tabela de símbolos
-        tabelaSimbolos.put(s8, TipoToken.BEGIN);
+        tabelaSimbolos.put(s14, TipoToken.BEGIN);
+    }
+
+    private void criarTransicoesPalavra03() {
+        Estado s15  = criarEstadoTransicaoUnica( 15, s0, 'e', false);
+        Estado s16 = criarEstadoTransicaoUnica(16, s15, 'n', false);
+        Estado s17 = criarEstadoTransicaoUnica(17,s16, 'd', false);
+
+        Estado s18 = new Estado(true, 18);
+        s17.adicionarTransicao(' ', s18);
+        s17.adicionarTransicao('\t',s18);
+        s17.adicionarTransicao('\r',s18);
+
+        // adiciona o valor na tabela de símbolos
+        tabelaSimbolos.put(s18, TipoToken.END);
+    }
+
+    private void criarTransicoesPalavra04() {
+        Estado s19  = criarEstadoTransicaoUnica( 19, s0, 'i', false);
+        Estado s20 = criarEstadoTransicaoUnica(16, s19, 'f', false);
+
+        Estado s21 = new Estado(true, 21);
+        s20.adicionarTransicao(' ', s21);
+        s20.adicionarTransicao('\t',s21);
+        s20.adicionarTransicao('\r',s21);
+
+        // adiciona o valor na tabela de símbolos
+        tabelaSimbolos.put(s21, TipoToken.IF);
+    }
+
+    private void criarTransicoesPalavra05() {
+        Estado s22  = criarEstadoTransicaoUnica( 22, s0, 'e', false);
+        Estado s23 = criarEstadoTransicaoUnica(23, s22, 'l', false);
+        Estado s24 = criarEstadoTransicaoUnica(24, s23, 's', false);
+        Estado s25 = criarEstadoTransicaoUnica(25, s24, 'e', false);
+        Estado s26 = criarEstadoTransicaoUnica(26, s25, 'i', false);
+        Estado s27 = criarEstadoTransicaoUnica(27, s26, 'f', false);
+
+        Estado s28 = new Estado(true, 28);
+        s27.adicionarTransicao(' ', s28);
+        s27.adicionarTransicao('\t',s28);
+        s27.adicionarTransicao('\r',s28);
+
+        // adiciona o valor na tabela de símbolos
+        tabelaSimbolos.put(s28, TipoToken.ELSEIF);
     }
 
     private Estado criarEstadoTransicaoUnica(int identificador,
