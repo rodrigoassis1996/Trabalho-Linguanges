@@ -74,6 +74,9 @@ public enum TipoToken {
     // Tipo de token para =
     IGUAL,
 
+    // Tipo de token para ==
+    IGUAL_IGUAL,
+
     // Tipo de token para !=
     EXCLAMACAO_IGUAL,
 
