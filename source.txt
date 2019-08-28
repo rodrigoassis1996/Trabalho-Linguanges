@@ -1,10 +1,38 @@
-program begin
- program begin
+program end
+ else begin
   program end
   program
   elseif
 
-  program
+  for
+  do
+  while
+  read
+  write ( )
+  {
+
+  }
+
+  +
+  ++
+  +=
+  -
+  --
+  -=
+  *
+  =
+  ==
+  !=
+  <
+  <=
+  >
+  >=
+  /
+  %
+  ;
+  ||
+  &&
+
 
 
 
