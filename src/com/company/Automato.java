@@ -38,132 +38,92 @@ public class Automato {
         criarTransicoesPalavra02();
 
         // criando as transições para reconhecer a
-        // palavra end
+        // palavra else | end | elseif
         criarTransicoesPalavra03();
 
         // criando as transições para reconhecer a
-        // palavra else
+        // palavra if
         criarTransicoesPalavra04();
 
         // criando as transições para reconhecer a
-        // palavra elseif
+        // palavra for
         criarTransicoesPalavra05();
 
         // criando as transições para reconhecer a
-        // palavra if
+        // palavra do
         criarTransicoesPalavra06();
 
         // criando as transições para reconhecer a
-        // palavra for
+        // palavra while | Write
         criarTransicoesPalavra07();
 
         // criando as transições para reconhecer a
-        // palavra do
+        // palavra read
         criarTransicoesPalavra08();
 
         // criando as transições para reconhecer a
-        // palavra while
+        // palavra (
         criarTransicoesPalavra09();
 
         // criando as transições para reconhecer a
-        // palavra read
+        // palavra )
         criarTransicoesPalavra10();
 
         // criando as transições para reconhecer a
-        // palavra write
+        // palavra {
         criarTransicoesPalavra11();
 
         // criando as transições para reconhecer a
-        // palavra (
+        // palavra }
         criarTransicoesPalavra12();
 
         // criando as transições para reconhecer a
-        // palavra )
+        // palavra + | ++ | +=
         criarTransicoesPalavra13();
 
         // criando as transições para reconhecer a
-        // palavra {
+        // palavra - | -- | -=
         criarTransicoesPalavra14();
 
         // criando as transições para reconhecer a
-        // palavra }
+        // palavra *
         criarTransicoesPalavra15();
 
         // criando as transições para reconhecer a
-        // palavra +
+        // palavra = | ==
         criarTransicoesPalavra16();
 
         // criando as transições para reconhecer a
-        // palavra ++
+        // palavra !=
         criarTransicoesPalavra17();
 
         // criando as transições para reconhecer a
-        // palavra +=
+        // palavra < |<=
         criarTransicoesPalavra18();
 
         // criando as transições para reconhecer a
-        // palavra -
+        // palavra > | >=
         criarTransicoesPalavra19();
 
         // criando as transições para reconhecer a
-        // palavra --
+        // palavra /
         criarTransicoesPalavra20();
 
         // criando as transições para reconhecer a
-        // palavra -=
+        // palavra %
         criarTransicoesPalavra21();
 
         // criando as transições para reconhecer a
-        // palavra *
+        // palavra ;
         criarTransicoesPalavra22();
 
         // criando as transições para reconhecer a
-        // palavra =
+        // palavra ||
         criarTransicoesPalavra23();
 
         // criando as transições para reconhecer a
-        // palavra ==
-        criarTransicoesPalavra24();
-
-        // criando as transições para reconhecer a
-        // palavra !=
-        criarTransicoesPalavra25();
-
-        // criando as transições para reconhecer a
-        // palavra <
-        criarTransicoesPalavra26();
-
-        // criando as transições para reconhecer a
-        // palavra <=
-        criarTransicoesPalavra27();
-
-        // criando as transições para reconhecer a
-        // palavra >
-        criarTransicoesPalavra28();
-
-        // criando as transições para reconhecer a
-        // palavra >=
-        criarTransicoesPalavra29();
-
-        // criando as transições para reconhecer a
-        // palavra /
-        criarTransicoesPalavra30();
-
-        // criando as transições para reconhecer a
-        // palavra %
-        criarTransicoesPalavra31();
-
-        // criando as transições para reconhecer a
-        // palavra ;
-        criarTransicoesPalavra32();
-
-        // criando as transições para reconhecer a
-        // palavra ||
-        criarTransicoesPalavra33();
-
-        // criando as transições para reconhecer a
         // palavra &&
-        criarTransicoesPalavra34();
+        criarTransicoesPalavra24();
     }
 
     public TokenLexema recuperarProximoTokenLexema() {
@@ -276,23 +236,8 @@ public class Automato {
         tabelaSimbolos.put(s14, TipoToken.BEGIN);
     }
 
-    // end
+    // else | end | elseif
     private void criarTransicoesPalavra03() {
-        Estado s15  = criarEstadoTransicaoUnica( 15, s0, 'e', false);
-        Estado s16 = criarEstadoTransicaoUnica(16, s15, 'n', false);
-        Estado s17 = criarEstadoTransicaoUnica(17,s16, 'd', false);
-
-        Estado s18 = new Estado(true, 18);
-        s17.adicionarTransicao(' ', s18);
-        s17.adicionarTransicao('\t',s18);
-        s17.adicionarTransicao('\r',s18);
-
-        // adiciona o valor na tabela de símbolos
-        tabelaSimbolos.put(s18, TipoToken.END);
-    }
-
-    // else
-    private void criarTransicoesPalavra04() {
         Estado s15  = criarEstadoTransicaoUnica( 15, s0, 'e', false);
         Estado s19 = criarEstadoTransicaoUnica(19, s15, 'l', false);
         Estado s20 = criarEstadoTransicaoUnica(20, s19, 's', false);
@@ -305,14 +250,18 @@ public class Automato {
 
         // adiciona o valor na tabela de símbolos
         tabelaSimbolos.put(s22, TipoToken.ELSE);
-    }
 
-    // elseif
-    private void criarTransicoesPalavra05() {
-        Estado s15  = criarEstadoTransicaoUnica( 15, s0, 'e', false);
-        Estado s19 = criarEstadoTransicaoUnica(19, s15, 'l', false);
-        Estado s20 = criarEstadoTransicaoUnica(20, s19, 's', false);
-        Estado s21 = criarEstadoTransicaoUnica(21, s20, 'e', false);
+        Estado s16 = criarEstadoTransicaoUnica(16, s15, 'n', false);
+        Estado s17 = criarEstadoTransicaoUnica(17,s16, 'd', false);
+
+        Estado s18 = new Estado(true, 18);
+        s17.adicionarTransicao(' ', s18);
+        s17.adicionarTransicao('\t',s18);
+        s17.adicionarTransicao('\r',s18);
+
+        // adiciona o valor na tabela de símbolos
+        tabelaSimbolos.put(s18, TipoToken.END);
+
         Estado s23 = criarEstadoTransicaoUnica(23, s21, 'i', false);
         Estado s24 = criarEstadoTransicaoUnica(24, s23, 'f', false);
 
@@ -326,7 +275,7 @@ public class Automato {
     }
 
     // if
-    private void criarTransicoesPalavra06() {
+    private void criarTransicoesPalavra04() {
         Estado s26  = criarEstadoTransicaoUnica( 26, s0, 'i', false);
         Estado s27 = criarEstadoTransicaoUnica(27, s26, 'f', false);
 
@@ -341,7 +290,7 @@ public class Automato {
 
 
     // for
-    private void criarTransicoesPalavra07() {
+    private void criarTransicoesPalavra05() {
         Estado s29  = criarEstadoTransicaoUnica( 29, s0, 'f', false);
         Estado s30 = criarEstadoTransicaoUnica(30, s29, 'o', false);
         Estado s31 = criarEstadoTransicaoUnica(31, s30, 'r', false);
@@ -356,7 +305,7 @@ public class Automato {
     }
 
     // do
-    private void criarTransicoesPalavra08() {
+    private void criarTransicoesPalavra06() {
         Estado s33  = criarEstadoTransicaoUnica( 33, s0, 'd', false);
         Estado s34 = criarEstadoTransicaoUnica(34, s33, 'o', false);
 
@@ -369,8 +318,8 @@ public class Automato {
         tabelaSimbolos.put(s35, TipoToken.DO);
     }
 
-    // while
-    private void criarTransicoesPalavra09() {
+    // while | write
+    private void criarTransicoesPalavra07() {
         Estado s36  = criarEstadoTransicaoUnica( 36, s0, 'w', false);
         Estado s37 = criarEstadoTransicaoUnica(37, s36, 'h', false);
         Estado s38 = criarEstadoTransicaoUnica(38, s37, 'i', false);
@@ -384,27 +333,7 @@ public class Automato {
 
         // adiciona o valor na tabela de símbolos
         tabelaSimbolos.put(s41, TipoToken.WHILE);
-    }
 
-    // read
-    private void criarTransicoesPalavra10() {
-        Estado s42  = criarEstadoTransicaoUnica( 42, s0, 'r', false);
-        Estado s43 = criarEstadoTransicaoUnica(43, s42, 'e', false);
-        Estado s44 = criarEstadoTransicaoUnica(44, s43, 'a', false);
-        Estado s45 = criarEstadoTransicaoUnica(45, s44, 'd', false);
-
-        Estado s46 = new Estado(true, 46);
-        s45.adicionarTransicao(' ', s46);
-        s45.adicionarTransicao('\t',s46);
-        s45.adicionarTransicao('\r',s46);
-
-        // adiciona o valor na tabela de símbolos
-        tabelaSimbolos.put(s46, TipoToken.READ);
-    }
-
-    // write
-    private void criarTransicoesPalavra11() {
-        Estado s36  = criarEstadoTransicaoUnica( 36, s0, 'w', false);
         Estado s47 = criarEstadoTransicaoUnica(47, s36, 'r', false);
         Estado s48 = criarEstadoTransicaoUnica(48, s47, 'i', false);
         Estado s49 = criarEstadoTransicaoUnica(49, s48, 't', false);
@@ -419,8 +348,24 @@ public class Automato {
         tabelaSimbolos.put(s51, TipoToken.WRITE);
     }
 
+    // read
+    private void criarTransicoesPalavra08() {
+        Estado s42  = criarEstadoTransicaoUnica( 42, s0, 'r', false);
+        Estado s43 = criarEstadoTransicaoUnica(43, s42, 'e', false);
+        Estado s44 = criarEstadoTransicaoUnica(44, s43, 'a', false);
+        Estado s45 = criarEstadoTransicaoUnica(45, s44, 'd', false);
+
+        Estado s46 = new Estado(true, 46);
+        s45.adicionarTransicao(' ', s46);
+        s45.adicionarTransicao('\t',s46);
+        s45.adicionarTransicao('\r',s46);
+
+        // adiciona o valor na tabela de símbolos
+        tabelaSimbolos.put(s46, TipoToken.READ);
+    }
+
     // (
-    private void criarTransicoesPalavra12() {
+    private void criarTransicoesPalavra09() {
         Estado s52  = criarEstadoTransicaoUnica( 52, s0, '(', false);
 
         Estado s53 = new Estado(true, 53);
@@ -433,7 +378,7 @@ public class Automato {
     }
 
     // )
-    private void criarTransicoesPalavra13() {
+    private void criarTransicoesPalavra10() {
         Estado s54  = criarEstadoTransicaoUnica( 54, s0, ')', false);
 
         Estado s55 = new Estado(true, 55);
@@ -446,7 +391,7 @@ public class Automato {
     }
 
     // {
-    private void criarTransicoesPalavra14() {
+    private void criarTransicoesPalavra11() {
         Estado s56  = criarEstadoTransicaoUnica( 56, s0, '{', false);
 
         Estado s57 = new Estado(true, 57);
@@ -459,7 +404,7 @@ public class Automato {
     }
 
     // }
-    private void criarTransicoesPalavra15() {
+    private void criarTransicoesPalavra12() {
         Estado s58  = criarEstadoTransicaoUnica( 58, s0, '}', false);
 
         Estado s59 = new Estado(true, 59);
@@ -472,7 +417,7 @@ public class Automato {
     }
 
     // +
-    private void criarTransicoesPalavra16() {
+    private void criarTransicoesPalavra13() {
         Estado s60  = criarEstadoTransicaoUnica( 60, s0, '+', false);
 
         Estado s61 = new Estado(true, 61);
@@ -482,11 +427,7 @@ public class Automato {
 
         // adiciona o valor na tabela de símbolos
         tabelaSimbolos.put(s61, TipoToken.SOMA);
-    }
 
-    // ++
-    private void criarTransicoesPalavra17() {
-        Estado s60  = criarEstadoTransicaoUnica( 60, s0, '+', false);
         Estado s62  = criarEstadoTransicaoUnica( 62, s60, '+', false);
 
         Estado s63 = new Estado(true, 63);
@@ -496,11 +437,7 @@ public class Automato {
 
         // adiciona o valor na tabela de símbolos
         tabelaSimbolos.put(s63, TipoToken.SOMA_SOMA);
-    }
 
-    // +=
-    private void criarTransicoesPalavra18() {
-        Estado s60  = criarEstadoTransicaoUnica( 60, s0, '+', false);
         Estado s64  = criarEstadoTransicaoUnica( 64, s60, '=', false);
 
         Estado s65 = new Estado(true, 65);
@@ -513,7 +450,7 @@ public class Automato {
     }
 
     // -
-    private void criarTransicoesPalavra19() {
+    private void criarTransicoesPalavra14() {
         Estado s66  = criarEstadoTransicaoUnica( 66, s0, '-', false);
 
         Estado s67 = new Estado(true, 67);
@@ -523,11 +460,7 @@ public class Automato {
 
         // adiciona o valor na tabela de símbolos
         tabelaSimbolos.put(s67, TipoToken.SUBTRAI);
-    }
 
-    // --
-    private void criarTransicoesPalavra20() {
-        Estado s66  = criarEstadoTransicaoUnica( 66, s0, '-', false);
         Estado s68  = criarEstadoTransicaoUnica( 68, s66, '-', false);
 
         Estado s69 = new Estado(true, 69);
@@ -537,11 +470,7 @@ public class Automato {
 
         // adiciona o valor na tabela de símbolos
         tabelaSimbolos.put(s69, TipoToken.SUBTRAI_SUBTRAI);
-    }
 
-    // -=
-    private void criarTransicoesPalavra21() {
-        Estado s66  = criarEstadoTransicaoUnica( 66, s0, '-', false);
         Estado s70  = criarEstadoTransicaoUnica( 70, s66, '=', false);
 
         Estado s71 = new Estado(true, 71);
@@ -554,7 +483,7 @@ public class Automato {
     }
 
     // *
-    private void criarTransicoesPalavra22() {
+    private void criarTransicoesPalavra15() {
         Estado s72  = criarEstadoTransicaoUnica( 72, s0, '*', false);
 
         Estado s73 = new Estado(true, 73);
@@ -566,8 +495,8 @@ public class Automato {
         tabelaSimbolos.put(s73, TipoToken.ASTERISCO);
     }
 
-    // =
-    private void criarTransicoesPalavra23() {
+    // = | ==
+    private void criarTransicoesPalavra16() {
         Estado s74  = criarEstadoTransicaoUnica( 74, s0, '=', false);
 
         Estado s75 = new Estado(true, 75);
@@ -577,11 +506,7 @@ public class Automato {
 
         // adiciona o valor na tabela de símbolos
         tabelaSimbolos.put(s75, TipoToken.IGUAL);
-    }
 
-    // ==
-    private void criarTransicoesPalavra24() {
-        Estado s74  = criarEstadoTransicaoUnica( 74, s0, '=', false);
         Estado s76  = criarEstadoTransicaoUnica( 76, s74, '=', false);
 
         Estado s77 = new Estado(true, 77);
@@ -594,7 +519,7 @@ public class Automato {
     }
 
     // !=
-    private void criarTransicoesPalavra25() {
+    private void criarTransicoesPalavra17() {
         Estado s78  = criarEstadoTransicaoUnica( 78, s0, '!', false);
         Estado s79  = criarEstadoTransicaoUnica( 79, s78, '=', false);
 
@@ -607,8 +532,8 @@ public class Automato {
         tabelaSimbolos.put(s80, TipoToken.EXCLAMACAO_IGUAL);
     }
 
-    // <
-    private void criarTransicoesPalavra26() {
+    // < | <=
+    private void criarTransicoesPalavra18() {
         Estado s81  = criarEstadoTransicaoUnica( 81, s0, '<', false);
 
         Estado s82 = new Estado(true, 82);
@@ -618,12 +543,8 @@ public class Automato {
 
         // adiciona o valor na tabela de símbolos
         tabelaSimbolos.put(s82, TipoToken.MENOR_QUE);
-    }
 
-    // <=
-    private void criarTransicoesPalavra27() {
-        Estado s81  = criarEstadoTransicaoUnica( 81, s0, '>', false);
-        Estado s83  = criarEstadoTransicaoUnica( 83, s81, '>', false);
+        Estado s83  = criarEstadoTransicaoUnica( 83, s81, '=', false);
 
         Estado s84 = new Estado(true, 84);
         s83.adicionarTransicao(' ', s84);
@@ -634,9 +555,9 @@ public class Automato {
         tabelaSimbolos.put(s84, TipoToken.MENOR_IGUAL);
     }
 
-    // >
-    private void criarTransicoesPalavra28() {
-        Estado s85  = criarEstadoTransicaoUnica( 85, s0, '<', false);
+    // > | >=
+    private void criarTransicoesPalavra19() {
+        Estado s85  = criarEstadoTransicaoUnica( 85, s0, '>', false);
 
         Estado s86 = new Estado(true, 86);
         s85.adicionarTransicao(' ', s86);
@@ -645,11 +566,7 @@ public class Automato {
 
         // adiciona o valor na tabela de símbolos
         tabelaSimbolos.put(s86, TipoToken.MAIOR_QUE);
-    }
 
-    // >=
-    private void criarTransicoesPalavra29() {
-        Estado s85  = criarEstadoTransicaoUnica( 85, s0, '>', false);
         Estado s87  = criarEstadoTransicaoUnica( 87, s85, '=', false);
 
         Estado s88 = new Estado(true, 88);
@@ -662,7 +579,7 @@ public class Automato {
     }
 
     // /
-    private void criarTransicoesPalavra30() {
+    private void criarTransicoesPalavra20() {
         Estado s89  = criarEstadoTransicaoUnica( 89, s0, '/', false);
 
         Estado s90 = new Estado(true, 90);
@@ -675,7 +592,7 @@ public class Automato {
     }
 
     // %
-    private void criarTransicoesPalavra31() {
+    private void criarTransicoesPalavra21() {
         Estado s91  = criarEstadoTransicaoUnica( 91, s0, '%', false);
 
         Estado s92 = new Estado(true, 92);
@@ -688,7 +605,7 @@ public class Automato {
     }
 
     // ;
-    private void criarTransicoesPalavra32() {
+    private void criarTransicoesPalavra22() {
         Estado s93  = criarEstadoTransicaoUnica( 93, s0, ';', false);
 
         Estado s94 = new Estado(true, 94);
@@ -701,7 +618,7 @@ public class Automato {
     }
 
     // ||
-    private void criarTransicoesPalavra33() {
+    private void criarTransicoesPalavra23() {
         Estado s95  = criarEstadoTransicaoUnica( 95, s0, '|', false);
         Estado s96  = criarEstadoTransicaoUnica( 96, s95, '|', false);
 
@@ -715,7 +632,7 @@ public class Automato {
     }
 
     // &&
-    private void criarTransicoesPalavra34() {
+    private void criarTransicoesPalavra24() {
         Estado s98  = criarEstadoTransicaoUnica( 98, s0, '&', false);
         Estado s99  = criarEstadoTransicaoUnica( 99, s98, '&', false);
 
@@ -728,11 +645,34 @@ public class Automato {
         tabelaSimbolos.put(s100, TipoToken.ECOMERCIAL_ECOMERCIAL);
     }
 
+    // Variável
+    private void criarTransicoesPalavra25() {
+        Estado s101  = criarEstadoTransicaoIntervalo( 101, s0, '?', false);
+
+        Estado s102 = new Estado(true, 100);
+        s101.adicionarTransicao(' ', s102);
+        s101.adicionarTransicao('\t',s102);
+        s101.adicionarTransicao('\r',s102);
+
+        // adiciona o valor na tabela de símbolos
+        tabelaSimbolos.put(s102, TipoToken.VARIAVEL);
+    }
+
     private Estado criarEstadoTransicaoUnica(int identificador,
                                              Estado estadoAnterior, char caracterTransicao,
                                              boolean marcado) {
         Estado s = new Estado(marcado, identificador);
         estadoAnterior.adicionarTransicao(caracterTransicao, s);
+        return s;
+    }
+
+    private Estado criarEstadoTransicaoIntervalo(int identificador,
+                                             Estado estadoAnterior, char caracterTransicao,
+                                             boolean marcado) {
+        Estado s = new Estado(marcado, identificador);
+        if (caracterTransicao > (int)'a' && caracterTransicao < (int)'z'){
+            estadoAnterior.adicionarTransicao(caracterTransicao, s);
+        }
         return s;
     }
 }
