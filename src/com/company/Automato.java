@@ -197,6 +197,27 @@ public class Automato {
             }
         }
 
+        if(TipoToken.NAO_RECONHECIDA.equals(tokenLexema.getTipoToken())){
+            c = ' ';
+            String lex = tokenLexema.getLexema();
+            while ((c = iteradorArquivo.proximoCaracter()) != null &&
+                    c != ' ' && c != '\n' && c != '\t' && c != '\r'){
+                lex += c;
+
+            }
+
+            if(lex.matches("[a-z][a-zA-Z0-9]*")) {
+                tokenLexema.setTipoToken(TipoToken.VARIAVEL);
+                tokenLexema.setLexema(lex);
+            }
+
+            if(lex.matches("[0-9]+[.]?[0-9]*")) {
+                tokenLexema.setTipoToken(TipoToken.NUMERO_REAL);
+                tokenLexema.setLexema(lex);
+            }
+
+        }
+
         return tokenLexema;
     }
 
@@ -645,19 +666,6 @@ public class Automato {
         tabelaSimbolos.put(s100, TipoToken.ECOMERCIAL_ECOMERCIAL);
     }
 
-    // Variável
-    private void criarTransicoesPalavra25() {
-        Estado s101  = criarEstadoTransicaoIntervalo( 101, s0, '?', false);
-
-        Estado s102 = new Estado(true, 100);
-        s101.adicionarTransicao(' ', s102);
-        s101.adicionarTransicao('\t',s102);
-        s101.adicionarTransicao('\r',s102);
-
-        // adiciona o valor na tabela de símbolos
-        tabelaSimbolos.put(s102, TipoToken.VARIAVEL);
-    }
-
     private Estado criarEstadoTransicaoUnica(int identificador,
                                              Estado estadoAnterior, char caracterTransicao,
                                              boolean marcado) {
@@ -666,13 +674,4 @@ public class Automato {
         return s;
     }
 
-    private Estado criarEstadoTransicaoIntervalo(int identificador,
-                                             Estado estadoAnterior, char caracterTransicao,
-                                             boolean marcado) {
-        Estado s = new Estado(marcado, identificador);
-        if (caracterTransicao > (int)'a' && caracterTransicao < (int)'z'){
-            estadoAnterior.adicionarTransicao(caracterTransicao, s);
-        }
-        return s;
-    }
 }

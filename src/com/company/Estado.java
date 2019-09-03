@@ -32,6 +32,7 @@ public class Estado {
         transicao.put(c, estado);
     }
 
+
     /**
      * Método responsável por obter o próximo estado a partir
      * do caractere apresentado.
@@ -42,6 +43,7 @@ public class Estado {
     public Estado obterProximoEstado(Character c) {
         return transicao.get(c);
     }
+
 
     @Override
     public String toString() {

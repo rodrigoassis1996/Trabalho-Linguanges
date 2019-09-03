@@ -25,4 +25,20 @@ public class TokenLexema {
     public String toString() {
         return "[tipoToken=" + tipoToken + ", lexema=" + lexema + "]";
     }
+
+    public TipoToken getTipoToken() {
+        return tipoToken;
+    }
+
+    public void setTipoToken(TipoToken tipoToken) {
+        this.tipoToken = tipoToken;
+    }
+
+    public String getLexema() {
+        return lexema;
+    }
+
+    public void setLexema(String lexema) {
+        this.lexema = lexema;
+    }
 }
