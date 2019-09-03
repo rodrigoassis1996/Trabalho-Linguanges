@@ -1,5 +1,10 @@
 package com.company;
 
+import com.company.regras.S;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Rodrigo Assis
  * Classe principal
@@ -8,6 +13,7 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
+        List<TokenLexema> lista = new ArrayList<>();
         String nomeArquivo = "./source.txt";
         if(args.length == 1) {
             nomeArquivo = args[0];
@@ -18,10 +24,15 @@ public class Main {
                 new IteradorArquivo(nomeArquivo);
         Automato automato = new Automato(iteradorArquivo);
 
-        TokenLexema tl = null;
+        //Recupera todos os tokens
         while (iteradorArquivo.isPossuiProximoToken()) {
-            tl = automato.recuperarProximoTokenLexema();
-            System.out.println(tl);
+            TokenLexema tl = automato.recuperarProximoTokenLexema();
+            if(!TipoToken.DESCARTAR.equals(tl.getTipoToken())) {
+                lista.add(tl);
+            }
         }
+
+        S s = new S();
+        s.reconher(lista, 0);
     }
 }
