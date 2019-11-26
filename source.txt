@@ -1,59 +1,19 @@
-program begin
-abcD0123
-123456.123
-program end
- else begin
-  program end
-  program
-  elseif
-
-  for
-  do
-  while
-  read
-  write ( )
-  {
-
-  }
-
-  +
-  ++
-  +=
-  -
-  --
-  -=
-  *
-  =
-  ==
-  !=
-  <
-  <=
-  >
-  >=
-  /
-  %
-  ;
-  ||
-  &&
-
-aaa
-a1
-0.56896
-654654984.8
-
-
-  if
-
-	begin
-	program
-
-begin
-
-
-
-program
-
-
-					
-							
-									
+partida
+    embreagem
+    engatar
+        acelerador freio
+        acelerador freio
+    embreagem engatar
+        acelerador freio
+    embreagem engatar
+        acelerador freio
+        acelerador
+        freio
+        acelerador
+        freio
+    pmorto
+    embreagem engatar
+        acelerador
+        freio
+    pmorto
+desligar

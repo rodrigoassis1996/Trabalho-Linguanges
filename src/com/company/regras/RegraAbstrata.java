@@ -2,8 +2,6 @@ package com.company.regras;
 
 import java.util.List;
 
-import com.company.Automato;
-import com.company.TipoToken;
 import com.company.TokenLexema;
 
 /**

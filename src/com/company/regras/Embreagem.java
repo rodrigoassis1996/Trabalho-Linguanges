@@ -9,24 +9,29 @@ import java.util.List;
 /**
  * Created by usuario on 03/09/2019.
  */
-public class S extends RegraAbstrata{
+public class Embreagem extends RegraAbstrata{
 
 
   @Override
   public void reconher(List<TokenLexema> lista, int indice) {
-    System.out.println("Regra Partida");
+    System.out.println("Regra Embreagem");
 
     if(indice < lista.size()) {
       TokenLexema tl = lista.get(indice);
       //System.out.println(tl.getTipoToken());
-      if(!TipoToken.PARTIDA.equals(tl.getTipoToken())) {
+      if(!TipoToken.EMBREAGEM.equals(tl.getTipoToken())) {
         throw new TokenNaoReconhecidoException(tl);
       }
-        indice ++;
+
+      indice ++;
+      tl = lista.get(indice);
+      if (TipoToken.ENGATAR.equals(tl.getTipoToken())) {
+        Engatar e = new Engatar();
+        e.reconher(lista, indice);
+      } else {
         Embreagem e = new Embreagem();
         e.reconher(lista, indice);
-
-
+      }
     }
   }
 }
